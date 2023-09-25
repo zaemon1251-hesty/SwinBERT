@@ -56,6 +56,7 @@ def load_tsv_to_mem(tsv_file, sep='\t'):
 
 def get_image_binaries(list_of_paths, image_size=56):
     batch = []
+    shape = None
     is_None = [v is None for v in list_of_paths]
     assert not any(is_None) or all(is_None)
     for img_path in list_of_paths:
@@ -98,6 +99,8 @@ def process_video_chunk(item, image_size=56, num_frames=32):
     _, vid_path = item
     images = prepare_single_video_frames(vid_path, num_frames)
     image_binaries, image_shape = get_image_binaries(images, image_size)
+    if image_shape is None:
+        raise ValueError(f'image_shape is None for {vid_path}')
     
     resolved_data_vid_id, vid_path = item
     line_item = [str(resolved_data_vid_id), json.dumps({"class": -1, "width": image_shape[0], "height": image_shape[1]})]
@@ -130,7 +133,7 @@ def main(args):
             for _, line_item in enumerate(
                     pool.imap(worker, data, chunksize=8)):
                 pbar.update(1)
-                yield(line_item)
+                yield (line_item)
     if args.image_size < 0:
         resolved_visual_file = f"{output_folder}/{args.split}_{args.num_frames}frames.img.tsv" 
     else:
@@ -154,5 +157,4 @@ if __name__ == '__main__':
                         type=int, default=8)
     args = parser.parse_args()
     main(args)
-
 

@@ -11,6 +11,9 @@ def get_video_duration(video_file):
                              "default=noprint_wrappers=1:nokey=1", video_file],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT)
+    if result.returncode != 0:
+        print(result.stdout)
+        return -1
     return float(result.stdout)
 
 
@@ -84,7 +87,8 @@ def extract_frame_from_video(video_path, save_frame_path, fps=1, num_frames=-1,
 COMMON_VIDEO_ETX = set([
     ".webm", ".mpg", ".mpeg", ".mpv", ".ogg",
     ".mp4", ".m4p", ".mpv", ".avi", ".wmv", ".qt",
-    ".mov", ".flv", ".swf"])
+    ".mov", ".flv", ".swf"
+    ".mkv"])
 
 
 def extract_frame(video_file_path, save_dir, fps, num_frames, debug=False, corrupt_files=[]):
@@ -121,12 +125,16 @@ def extract_all_frames(video_root_dir, save_dir, fps, num_frames,
     videoFiles = []
     for _, line_item in enumerate(raw_video_info):
         input_file = line_item[0]
-        input_file = input_file.replace('datasets','_datasets')
+        # input_file = input_file.replace('datasets', '_datasets')
         if os.path.isfile(input_file):
             videoFiles.append(input_file)
     if debug:
         videoFiles = videoFiles[:1]
-
+    print('~~~~~~~~~~~~')
+    print(videoFiles)
+    print(raw_video_info[2])
+    print(f"num_workers: {num_workers}")
+    
     if num_workers > 0:
         from functools import partial
         extract_frame_partial = partial(

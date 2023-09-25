@@ -127,7 +127,7 @@ class VisionLanguageTSVDataset(object):
             if self.is_composite:
                 return CompositeTSVFile(tsv_file, self.cap_linelist_file, root=self.root)
             tsv_path = find_file_path_in_yaml(tsv_file, self.root)
-            return TSVFile(tsv_path)
+            return TSVFile(tsv_path, generate_lineidx=True)
 
     def load_caption_to_memory(self):
         self.caption_on_memory = {}
@@ -197,7 +197,8 @@ class VisionLanguageTSVDataset(object):
     def get_caption_and_timeinfo_wrapper(self, img_idx, cap_idx):
         row = self.get_row_from_tsv(self.cap_tsv, img_idx)
         data_sample = json.loads(row[1])
-        caption, asr_or_tag, start, end = self.get_caption_and_timeinfo(data_sample, cap_idx) 
+        caption, asr_or_tag, start, end = self.get_caption_and_timeinfo(
+            data_sample, cap_idx)
         return caption, asr_or_tag, start, end
 
     def get_caption_file_in_coco_format(self):

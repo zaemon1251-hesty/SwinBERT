@@ -254,7 +254,7 @@ class SharedConfigs(object):
                                  help="number of hypotheses to keep in beam search")
         self.parser.add_argument('--temperature', type=float, default=1,
                                  help="temperature in softmax for sampling")
-        self.parser.add_argument('--top_k', type=int, default=0,
+        self.parser.add_argument('--top_k', type=int, default=1,
                                  help="filter distribution for sampling")
         self.parser.add_argument('--top_p', type=float, default=1,
                                  help="filter distribution for sampling")

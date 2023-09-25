@@ -37,7 +37,21 @@ import shutil
 import argparse
 import subprocess as sp
 from datetime import datetime
-from future.utils import viewitems
+try:
+    from future.utils import viewitems
+except ImportError:
+    def viewitems(obj, **kwargs):
+        """
+        this is a copy of six.viewitems
+        Function for iterating over dictionary items with the same set-like
+        behaviour on Py2.7 as on Py3.
+
+        Passes kwargs to method."""
+        func = getattr(obj, "viewitems", None)
+        if not func:
+            func = obj.items
+        return func(**kwargs)
+
 from ete3 import Tree
 try:
     # py3

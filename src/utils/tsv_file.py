@@ -21,11 +21,13 @@ def create_lineidx(filein, idxout):
     os.rename(idxout_tmp, idxout)
 
 
-def read_to_character(fp, c):
+def read_to_character(fp, c, file=None, pos=None):
     result = []
     while True:
         s = fp.read(32)
-        assert s != ''
+        if s == '':
+            raise ValueError('found empty string in {}:{}'.format(file, pos))
+        # assert s != ''
         if c in s:
             result.append(s[: s.index(c)])
             break
@@ -77,7 +79,7 @@ class TSVFile(object):
         self._ensure_lineidx_loaded()
         pos = self._lineidx[idx]
         self._fp.seek(pos)
-        return read_to_character(self._fp, '\t')
+        return read_to_character(self._fp, '\t', self.tsv_file, pos)
 
     def get_key(self, idx):
         return self.seek_first_column(idx)
@@ -159,5 +161,3 @@ def load_list_file(fname):
     if len(result) > 0 and result[-1] == '':
         result = result[:-1]
     return result
-
-

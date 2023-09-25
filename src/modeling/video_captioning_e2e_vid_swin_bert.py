@@ -59,8 +59,8 @@ class VideoTransformer(torch.nn.Module):
             kwargs['attention_mask'][:, -vid_att_len::, -vid_att_len::] = learn_att
         outputs = self.trans_encoder(*args, **kwargs)
         if self.learn_mask_enabled:
-            loss_sparsity = self.get_loss_sparsity(video_attention)  
-            outputs = outputs + (loss_sparsity, )          
+            loss_sparsity = self.get_loss_sparsity(video_attention)
+            outputs = outputs + (loss_sparsity, )
         return outputs
     
     def get_loss_sparsity(self, video_attention):
@@ -122,4 +122,3 @@ class VideoTransformer(torch.nn.Module):
         for _, p in self.swin.named_parameters():
             p.requires_grad =  not freeze
 
- 

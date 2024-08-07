@@ -15,7 +15,7 @@ import pickle
 import logging
 import numpy as np
 from glob import glob
-from typing import List, Dict
+from typing import Dict
 
 from src.timm.utils.misc import natural_key
 
@@ -130,7 +130,7 @@ def extract_tarinfos(root, class_name_to_idx=None, cache_tarinfo=None, extension
             added += 1
         return added
 
-    _logger.info(f'Collecting samples and building tar states.')
+    _logger.info('Collecting samples and building tar states.')
     for parent_info in info['tartrees']:
         # if tartree has children, we assume all samples are at the child level
         tar_name = None if root_is_tar else parent_info['name']
@@ -151,7 +151,7 @@ def extract_tarinfos(root, class_name_to_idx=None, cache_tarinfo=None, extension
         sorted_labels = list(sorted(set(labels), key=natural_key))
         class_name_to_idx = {c: idx for idx, c in enumerate(sorted_labels)}
 
-    _logger.info(f'Mapping targets and sorting samples.')
+    _logger.info('Mapping targets and sorting samples.')
     samples_and_targets = [(s, class_name_to_idx[l]) for s, l in zip(samples, labels) if l in class_name_to_idx]
     if sort:
         samples_and_targets = sorted(samples_and_targets, key=lambda k: natural_key(k[0][0].path))

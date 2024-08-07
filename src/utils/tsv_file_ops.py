@@ -7,7 +7,7 @@ import cv2
 import math
 from tqdm import tqdm
 
-from .miscellaneous import mkdir, load_from_yaml_file, write_to_yaml_file
+from .miscellaneous import load_from_yaml_file, write_to_yaml_file
 from .tsv_file import TSVFile
 from .miscellaneous import ensure_directory, exclusive_open_to_read
 

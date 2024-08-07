@@ -10,7 +10,6 @@ import types
 import functools
 
 import torch
-import torch.nn as nn
 
 from .evo_norm import EvoNormBatch2d, EvoNormSample2d
 from .norm_act import BatchNormAct2d, GroupNormAct

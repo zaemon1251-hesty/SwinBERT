@@ -12,13 +12,10 @@ Consider all of the models definitions here as experimental WIP and likely to ch
 
 Hacked together by / copyright Ross Wightman, 2021.
 """
-import math
 from dataclasses import dataclass, field
-from collections import OrderedDict
-from typing import Tuple, List, Optional, Union, Any, Callable
+from typing import Tuple, List, Optional, Union, Callable
 from functools import partial
 
-import torch
 import torch.nn as nn
 
 from src.timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD

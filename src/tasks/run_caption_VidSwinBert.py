@@ -606,7 +606,11 @@ def update_existing_config_for_inference(args):
         from easydict import EasyDict
 
         train_args = EasyDict(json_data)
+<<<<<<< Updated upstream
     except Exception as e:
+=======
+    except Exception:
+>>>>>>> Stashed changes
         train_args = torch.load(op.join(checkpoint, "training_args.bin"))
 
     train_args.eval_model_dir = args.eval_model_dir

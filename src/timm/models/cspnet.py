@@ -14,7 +14,6 @@ Hacked together by / Copyright 2020 Ross Wightman
 """
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 from src.timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from .helpers import build_model_with_cfg

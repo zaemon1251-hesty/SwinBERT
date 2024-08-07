@@ -10,9 +10,6 @@ import random
 import shutil
 from .comm import is_main_process
 import yaml
-import json
-from .basic_utils import save_json
-from easydict import EasyDict as edict
 from .logger import LOGGER as logger
 from pprint import pformat
 

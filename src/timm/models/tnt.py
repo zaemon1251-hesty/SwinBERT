@@ -9,7 +9,6 @@ https://gitee.com/mindspore/mindspore/tree/master/model_zoo/research/cv/TNT
 import math
 import torch
 import torch.nn as nn
-from functools import partial
 
 from src.timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from src.timm.models.helpers import load_pretrained

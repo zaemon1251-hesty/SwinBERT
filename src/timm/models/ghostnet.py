@@ -146,7 +146,7 @@ class GhostNet(nn.Module):
         # building first layer
         stem_chs = make_divisible(16 * width, 4)
         self.conv_stem = nn.Conv2d(in_chans, stem_chs, 3, 2, 1, bias=False)
-        self.feature_info.append(dict(num_chs=stem_chs, reduction=2, module=f'conv_stem'))
+        self.feature_info.append(dict(num_chs=stem_chs, reduction=2, module='conv_stem'))
         self.bn1 = nn.BatchNorm2d(stem_chs)
         self.act1 = nn.ReLU(inplace=True)
         prev_chs = stem_chs

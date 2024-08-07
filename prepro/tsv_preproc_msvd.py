@@ -5,8 +5,8 @@ pythonpath = os.path.abspath(
 print(pythonpath)
 sys.path.insert(0, pythonpath)
 import os.path as op
-import json, yaml, code, io
-import numpy as np
+import json
+import yaml
 from src.utils.tsv_file_ops import tsv_reader, tsv_writer
 from src.utils.tsv_file_ops import generate_linelist_file
 from tqdm import tqdm

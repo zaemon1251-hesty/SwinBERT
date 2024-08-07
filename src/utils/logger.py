@@ -2,7 +2,6 @@
 import logging
 import os
 from logging import StreamHandler, Handler, getLevelName
-import wandb
 
 # this class is a copy of logging.FileHandler except we end self.close()
 # at the end of each emit. While closing file and reopening file after each

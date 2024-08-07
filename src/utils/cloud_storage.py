@@ -5,7 +5,7 @@ from .qd_common import ensure_remove_file
 from .qd_common import has_handle
 from .qd_common import get_file_size
 from .qd_common import hash_sha1
-from .qd_common import acquireLock, hash_sha1, releaseLock
+from .qd_common import acquireLock, releaseLock
 from .qd_common import write_to_file
 import os.path as op
 import glob

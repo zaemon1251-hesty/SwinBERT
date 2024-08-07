@@ -2,10 +2,10 @@ import json
 import logging
 import os
 from functools import partial
-from typing import Union, Optional
+from typing import Union
 
 import torch
-from torch.hub import load_state_dict_from_url, download_url_to_file, urlparse, HASH_REGEX
+from torch.hub import download_url_to_file, urlparse, HASH_REGEX
 try:
     from torch.hub import get_dir
 except ImportError:

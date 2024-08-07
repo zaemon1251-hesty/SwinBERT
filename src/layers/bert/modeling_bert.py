@@ -29,9 +29,8 @@ from torch.distributions import kl_divergence, Categorical
 from torch.nn import CrossEntropyLoss, MSELoss
 import torch.nn.functional as F
 
-from torch.nn.utils.weight_norm import weight_norm
 
-from .modeling_utils import (WEIGHTS_NAME, CONFIG_NAME, PretrainedConfig, PreTrainedModel,
+from .modeling_utils import (PretrainedConfig, PreTrainedModel,
                              prune_linear_layer, add_start_docstrings)
 
 import logging
@@ -40,7 +39,6 @@ logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 if not is_main_process():
     logger.disabled = True
 
-import torch.utils.checkpoint as torch_checkpoint
 BERT_PRETRAINED_MODEL_ARCHIVE_MAP = {
     'bert-base-uncased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-pytorch_model.bin",
     'bert-large-uncased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-pytorch_model.bin",

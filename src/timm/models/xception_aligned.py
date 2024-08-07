@@ -8,7 +8,6 @@ Hacked together by / Copyright 2020 Ross Wightman
 from functools import partial
 
 import torch.nn as nn
-import torch.nn.functional as F
 
 from src.timm.data import IMAGENET_INCEPTION_MEAN, IMAGENET_INCEPTION_STD
 from .helpers import build_model_with_cfg

@@ -1,6 +1,5 @@
 import torch
 from fairscale.nn.misc import checkpoint_wrapper
-import random
 
 
 class VideoTransformer(torch.nn.Module):

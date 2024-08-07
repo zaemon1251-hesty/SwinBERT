@@ -6,7 +6,6 @@ Adapted from original PyTorch impl w/ weights at https://github.com/zhanghang198
 
 Modified for torchscript compat, and consistency with timm by Ross Wightman
 """
-import torch
 from torch import nn
 
 from src.timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD

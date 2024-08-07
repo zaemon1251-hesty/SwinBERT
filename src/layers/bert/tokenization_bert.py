@@ -22,7 +22,7 @@ import unicodedata
 from io import open
 from random import randint
 
-from .tokenization_utils import PreTrainedTokenizer, clean_up_tokenization
+from .tokenization_utils import PreTrainedTokenizer
 
 import logging
 from src.utils.comm import is_main_process
@@ -170,7 +170,7 @@ class BertTokenizer(PreTrainedTokenizer):
                     sub_to_token_idx_map.append(idx)
             return (split_tokens, basic_tokens, sub_to_token_idx_map)
         else:
-            raise ValueError(f"_tokenize_for_pos_tag must set self.do_basic_tokenize as True")
+            raise ValueError("_tokenize_for_pos_tag must set self.do_basic_tokenize as True")
 
     def _convert_token_to_id(self, token):
         """ Converts a token (str/unicode) in an id using the vocab. """

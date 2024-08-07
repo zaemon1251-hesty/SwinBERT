@@ -20,7 +20,7 @@ Hacked together by / Copyright 2020 Ross Wightman
 import random
 import math
 import re
-from PIL import Image, ImageOps, ImageEnhance, ImageChops
+from PIL import Image, ImageOps, ImageEnhance
 import PIL
 import numpy as np
 

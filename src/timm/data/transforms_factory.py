@@ -10,7 +10,7 @@ from torchvision import transforms
 
 from src.timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD, DEFAULT_CROP_PCT
 from src.timm.data.auto_augment import rand_augment_transform, augment_and_mix_transform, auto_augment_transform
-from src.timm.data.transforms import _pil_interp, RandomResizedCropAndInterpolation, ToNumpy, ToTensor
+from src.timm.data.transforms import _pil_interp, RandomResizedCropAndInterpolation, ToNumpy
 from src.timm.data.random_erasing import RandomErasing
 
 

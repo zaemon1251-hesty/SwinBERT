@@ -2,10 +2,9 @@
 
 Hacked together by / Copyright 2020 Ross Wightman
 """
-import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import List, Tuple, Optional
+from typing import List
 
 from .helpers import to_2tuple
 from .padding import pad_same, get_padding_value

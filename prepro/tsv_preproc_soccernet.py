@@ -5,12 +5,8 @@ pythonpath = os.path.abspath(
 print(pythonpath)
 sys.path.insert(0, pythonpath)
 import os.path as op
-import json, yaml, code, io
-import numpy as np
-import pandas as pd
-from src.utils.tsv_file_ops import tsv_writer
-from src.utils.tsv_file_ops import generate_linelist_file
-from collections import defaultdict
+import json
+import yaml
 from tqdm import tqdm
 # data path to raw video files
 data_vid_id = "datasets/SoccerNet/raw_videos/{}.mkv"

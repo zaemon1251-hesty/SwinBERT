@@ -5,13 +5,11 @@ https://arxiv.org/pdf/2003.13630.pdf
 Original model: https://github.com/mrT23/TResNet
 
 """
-import copy
 from collections import OrderedDict
 from functools import partial
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 from .helpers import build_model_with_cfg
 from .layers import SpaceToDepthModule, AntiAliasDownsampleLayer, InplaceAbn, ClassifierHead, SEModule

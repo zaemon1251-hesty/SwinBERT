@@ -11,22 +11,17 @@ import os.path as op
 import json
 import time
 import torch
-import torch.distributed as dist
-from apex import amp
-import deepspeed
 from src.configs.config import (basic_check_arguments, shared_configs)
 from src.datasets.data_utils.video_ops import extract_frames_from_video_path
 from src.datasets.data_utils.video_transforms import Compose, Resize, Normalize, CenterCrop
 from src.datasets.data_utils.volume_transforms import ClipToTensor
 from src.datasets.caption_tensorizer import build_tensorizer
-from src.utils.deepspeed import fp32_to_fp16
 from src.utils.logger import LOGGER as logger
-from src.utils.logger import (TB_LOGGER, RunningMeter, add_log_to_file)
 from src.utils.comm import (is_main_process,
-                            get_rank, get_world_size, dist_init)
-from src.utils.miscellaneous import (mkdir, set_seed, str_to_bool)
+                            get_rank, dist_init)
+from src.utils.miscellaneous import (set_seed, str_to_bool)
 from src.modeling.video_captioning_e2e_vid_swin_bert import VideoTransformer
-from src.modeling.load_swin import get_swin_model, reload_pretrained_swin
+from src.modeling.load_swin import get_swin_model
 from src.modeling.load_bert import get_bert_model
 
 def _online_video_decode(args, video_path):
@@ -142,7 +137,7 @@ def update_existing_config_for_inference(args):
 
         from easydict import EasyDict
         train_args = EasyDict(json_data)
-    except Exception as e:
+    except Exception:
         train_args = torch.load(op.join(checkpoint, 'training_args.bin'))
 
     train_args.eval_model_dir = args.eval_model_dir

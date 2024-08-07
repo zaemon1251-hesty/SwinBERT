@@ -11,7 +11,6 @@ from easydict import EasyDict as edict
 from src.utils.miscellaneous import str_to_bool, check_yaml_file
 from src.utils.logger import LOGGER
 from os import path as op
-from packaging import version
 
 
 def parse_with_config(parsed_args):
@@ -381,7 +380,7 @@ def restore_training_settings(args):
         json_data = json.load(f)
         from easydict import EasyDict
         train_args = EasyDict(json_data)
-    except Exception as e:
+    except Exception:
         train_args = torch.load(op.join(checkpoint, 'training_args.bin'))
 
     if args.add_od_labels:

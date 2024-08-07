@@ -1,5 +1,4 @@
 from torch import nn as nn
-import torch.nn.functional as F
 
 from .create_act import create_act_layer
 from .helpers import make_divisible

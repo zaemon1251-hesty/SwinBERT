@@ -12,8 +12,6 @@ pythonpath = os.path.abspath(
 print(pythonpath)
 sys.path.insert(0, pythonpath)
 from src.utils.tsv_file_ops import tsv_writer
-from PIL import Image
-import io
 import base64
 import cv2
 

@@ -3,7 +3,6 @@
 Hacked together by / Copyright 2020 Ross Wightman
 """
 import torch.utils.data as data
-import os
 import torch
 import logging
 

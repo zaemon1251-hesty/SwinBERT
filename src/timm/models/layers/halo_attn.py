@@ -19,7 +19,7 @@ variants with attn in C4 and/or C5 stages are tolerable speed.
 
 Hacked together by / Copyright 2021 Ross Wightman
 """
-from typing import Tuple, List
+from typing import List
 
 import torch
 from torch import nn

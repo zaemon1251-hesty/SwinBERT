@@ -16,8 +16,7 @@ Status:
 
 Hacked together by / copyright Ross Wightman, 2021.
 """
-import math
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from collections import OrderedDict
 from typing import Tuple, Optional
 from functools import partial
@@ -388,7 +387,7 @@ def create_stem(in_chs, out_chs, stem_type='', conv_layer=None, act_layer=None, 
     if 'deep' in stem_type:
         if 'quad' in stem_type:
             # 4 deep conv stack as in NFNet-F models
-            assert not 'pool' in stem_type
+            assert 'pool' not in stem_type
             stem_chs = (out_chs // 8, out_chs // 4, out_chs // 2, out_chs)
             strides = (2, 1, 1, 2)
             stem_stride = 4
@@ -532,7 +531,7 @@ class NormFreeNet(nn.Module):
             # The paper NFRegNet models have an EfficientNet-like final head convolution.
             self.num_features = make_divisible(cfg.width_factor * cfg.num_features, cfg.ch_div)
             self.final_conv = conv_layer(prev_chs, self.num_features, 1)
-            self.feature_info[-1] = dict(num_chs=self.num_features, reduction=net_stride, module=f'final_conv')
+            self.feature_info[-1] = dict(num_chs=self.num_features, reduction=net_stride, module='final_conv')
         else:
             self.num_features = prev_chs
             self.final_conv = nn.Identity()

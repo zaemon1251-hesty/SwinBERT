@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 
 
-from .features import FeatureListNet, FeatureDictNet, FeatureHookNet
+from .features import FeatureListNet, FeatureHookNet
 from .hub import has_hf_hub, download_cached_file, load_state_dict_from_hf, load_state_dict_from_url
 from .layers import Conv2dSame, Linear
 
@@ -192,7 +192,7 @@ def load_pretrained(model, default_cfg=None, num_classes=1000, in_chans=3, filte
                 state_dict[weight_name] = adapt_input_conv(in_chans, state_dict[weight_name])
                 _logger.info(
                     f'Converted input conv {input_conv_name} pretrained weights from 3 to {in_chans} channel(s)')
-            except NotImplementedError as e:
+            except NotImplementedError:
                 del state_dict[weight_name]
                 strict = False
                 _logger.warning(

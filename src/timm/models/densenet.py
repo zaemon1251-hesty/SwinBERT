@@ -4,13 +4,11 @@ fixed kwargs passthrough and addition of dynamic global avg/max pool.
 """
 import re
 from collections import OrderedDict
-from functools import partial
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.utils.checkpoint as cp
-from torch.jit.annotations import List
 
 from src.timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from .helpers import build_model_with_cfg

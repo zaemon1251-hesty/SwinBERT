@@ -36,7 +36,7 @@ def save_training_meta(args):
                  exclude_dirs_substring="results",
                  exclude_dirs=["results", "debug_results", "__pycache__", "linjli"],
                  exclude_extensions=[".pyc", ".ipynb", ".swap"])
-    LOGGER.info(f"Saving code done.")
+    LOGGER.info("Saving code done.")
 
 
 class TrainingSaver(object):
@@ -294,7 +294,7 @@ class TrainingRestorer(object):
                 try:
                     self.save()
                     break
-                except Exception as e:
+                except Exception:
                     save_trial += 1
 
     def save(self):

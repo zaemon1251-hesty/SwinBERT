@@ -14,7 +14,6 @@ from multiprocessing import Event
 import logging
 import functools
 import numpy as np
-import logging
 import glob
 import re
 from tqdm import tqdm
@@ -25,11 +24,8 @@ except ImportError:
     pass
 import time
 import matplotlib.pyplot as plt
-from pprint import pprint
 from pprint import pformat
-import numpy as np
 import os.path as op
-import re
 import base64
 import cv2
 import psutil
@@ -62,7 +58,6 @@ except ImportError:
     from urllib2 import urlopen, Request
     from urllib2 import HTTPError
 import copy
-from deprecated import deprecated
 import io
 
 from PIL import ImageFile
@@ -84,7 +79,8 @@ def get_sys_memory_usage_info():
     return dict(zip(headers, values))
 
 def get_mem_usage_in_bytes():
-    import os, psutil
+    import os
+    import psutil
     process = psutil.Process(os.getpid())
     return process.memory_info().rss  # in bytes
 
@@ -1477,9 +1473,9 @@ def generate_lineidx(filein, idxout):
         fbar_last_pos = 0
         fbar = qd_tqdm(total=fsize, unit_scale=True)
         while fpos!=fsize:
-            tsvout.write(str(fpos)+"\n");
+            tsvout.write(str(fpos)+"\n")
             tsvin.readline()
-            fpos = tsvin.tell();
+            fpos = tsvin.tell()
             fbar.update(fpos - fbar_last_pos)
             fbar_last_pos = fpos
     os.rename(idxout_tmp, idxout)
@@ -2043,7 +2039,7 @@ def update_kernel_active(net, kernel_active, kernel_active_skip):
     assert False, 'use update_kernel_active2'
     c = 0
     skipped = 0
-    logging.info('{}-{}'.format(kernel_active, kernel_active_skip));
+    logging.info('{}-{}'.format(kernel_active, kernel_active_skip))
     for l in net.layer:
         if l.type == 'Convolution':
             if skipped < kernel_active_skip:
@@ -2194,36 +2190,36 @@ class LoopProcess(Process):
 
 class PyTee(object):
     def __init__(self, logstream, stream_name):
-        valid_streams = ['stderr','stdout'];
+        valid_streams = ['stderr','stdout']
         if  stream_name not in valid_streams:
             raise IOError("valid stream names are %s" % ', '.join(valid_streams))
         self.logstream =  logstream
-        self.stream_name = stream_name;
+        self.stream_name = stream_name
     def __del__(self):
-        pass;
+        pass
     def write(self, data):  #tee stdout
-        self.logstream.write(data);
-        self.fstream.write(data);
-        self.logstream.flush();
-        self.fstream.flush();
+        self.logstream.write(data)
+        self.fstream.write(data)
+        self.logstream.flush()
+        self.fstream.flush()
 
     def flush(self):
-        self.logstream.flush();
-        self.fstream.flush();
+        self.logstream.flush()
+        self.fstream.flush()
 
     def __enter__(self):
         if self.stream_name=='stdout' :
             self.fstream   =  sys.stdout
-            sys.stdout = self;
+            sys.stdout = self
         else:
             self.fstream   =  sys.stderr
-            sys.stderr = self;
-        self.fstream.flush();
+            sys.stderr = self
+        self.fstream.flush()
     def __exit__(self, _type, _value, _traceback):
         if self.stream_name=='stdout' :
-            sys.stdout = self.fstream;
+            sys.stdout = self.fstream
         else:
-            sys.stderr = self.fstream;
+            sys.stderr = self.fstream
 
 def parse_basemodel_with_depth(net):
     '''
@@ -2254,7 +2250,7 @@ def default_data_path(dataset):
     '''
     use TSVDataset instead
     '''
-    proj_root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)));
+    proj_root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     result = {}
     data_root = os.path.join(proj_root, 'data', dataset)
     result['data_root'] = data_root
@@ -2320,21 +2316,21 @@ def pilimg_from_base64(imagestring):
         image = image.convert('RGB')
         return image
     except:
-        return None;
+        return None
 
 def img_from_base64(imagestring):
     try:
         jpgbytestring = base64.b64decode(imagestring)
         nparr = np.frombuffer(jpgbytestring, np.uint8)
-        r = cv2.imdecode(nparr, cv2.IMREAD_COLOR);
+        r = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
         return r
     except:
-        return None;
+        return None
 
 def img_from_bytes(jpgbytestring):
     try:
         nparr = np.frombuffer(jpgbytestring, np.uint8)
-        r = cv2.imdecode(nparr, cv2.IMREAD_COLOR);
+        r = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
         return r
     except:
         return None
@@ -2342,7 +2338,7 @@ def img_from_bytes(jpgbytestring):
 def img_from_base64_ignore_rotation(str_im):
     jpgbytestring = base64.b64decode(str_im)
     nparr = np.frombuffer(jpgbytestring, np.uint8)
-    im = cv2.imdecode(nparr, cv2.IMREAD_IGNORE_ORIENTATION);
+    im = cv2.imdecode(nparr, cv2.IMREAD_IGNORE_ORIENTATION)
     return im
 
 def encode_decode_im(im, quality):

@@ -26,8 +26,7 @@ Hacked together by / copyright Ross Wightman, 2021.
 """
 import math
 from dataclasses import dataclass, field, replace
-from collections import OrderedDict
-from typing import Tuple, List, Optional, Union, Any, Callable, Sequence
+from typing import Tuple, List, Optional, Union, Callable, Sequence
 from functools import partial
 
 import torch

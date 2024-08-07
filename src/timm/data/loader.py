@@ -211,7 +211,7 @@ def create_loader(
         persistent_workers=persistent_workers)
     try:
         loader = loader_class(dataset, **loader_args)
-    except TypeError as e:
+    except TypeError:
         loader_args.pop('persistent_workers')  # only in Pytorch 1.7+
         loader = loader_class(dataset, **loader_args)
     if use_prefetcher:

@@ -6,8 +6,6 @@ https://www.tensorflow.org/datasets/catalog/overview#image_classification
 
 Hacked together by / Copyright 2020 Ross Wightman
 """
-import os
-import io
 import math
 import torch
 import torch.distributed as dist
